@@ -1,6 +1,6 @@
 /// <reference path="../typings.d.ts" />
 
-require('dotenv').config();
+require('dotenv').config({path:'./config'});
 
 import * as path from 'path';
 import * as logger from 'morgan';
