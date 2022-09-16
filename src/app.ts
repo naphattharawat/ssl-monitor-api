@@ -1,6 +1,7 @@
 /// <reference path="../typings.d.ts" />
 
-require('dotenv').config({path:'../config'});
+let envPath = path.join(__dirname, '../config');
+require('dotenv').config({ path: envPath });
 
 import * as path from 'path';
 import * as logger from 'morgan';
