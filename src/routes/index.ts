@@ -44,13 +44,13 @@ router.post('/', async (req: Request, res: Response) => {
         valid_to: getSslDetails.validTo,
         valid_for: getSslDetails.validFor.join(",")
       }
-      // await requestModel.saveRequest(req.db, {
-      //   domain: domain,
-      //   valid: getSslDetails.valid ? 'Y' : 'N',
-      //   valid_from: getSslDetails.validFrom,
-      //   valid_to: getSslDetails.validTo,
-      //   valid_for: getSslDetails.validFor.join(",")
-      // })
+      await requestModel.saveRequest(req.db, {
+        domain: domain,
+        valid: getSslDetails.valid ? 'Y' : 'N',
+        valid_from: getSslDetails.validFrom,
+        valid_to: getSslDetails.validTo,
+        valid_for: getSslDetails.validFor.join(",")
+      })
       res.send({ ok: true, data: obj })
     } else {
       res.send({ ok: false })
