@@ -29,10 +29,13 @@ router.post('/', async (req: Request, res: Response) => {
     let getSslDetails;
     let isError = false;
     try {
-      getSslDetails = await sslChecker(domain, { method: "GET", port: 443 });
+      getSslDetails = await sslChecker(domain, { method: "GET", port: 443, rejectUnauthorized: true });
+      // console.log(getSslDetails);
     } catch (error) {
       isError = true;
     }
+    // console.log(isError);
+    
     if (!isError) {
       const obj = {
         days: getSslDetails.daysRemaining,
@@ -41,19 +44,19 @@ router.post('/', async (req: Request, res: Response) => {
         valid_to: getSslDetails.validTo,
         valid_for: getSslDetails.validFor.join(",")
       }
-      await requestModel.saveRequest(req.db, {
-        domain: domain,
-        valid: getSslDetails.valid ? 'Y' : 'N',
-        valid_from: getSslDetails.validFrom,
-        valid_to: getSslDetails.validTo,
-        valid_for: getSslDetails.validFor.join(",")
-      })
+      // await requestModel.saveRequest(req.db, {
+      //   domain: domain,
+      //   valid: getSslDetails.valid ? 'Y' : 'N',
+      //   valid_from: getSslDetails.validFrom,
+      //   valid_to: getSslDetails.validTo,
+      //   valid_for: getSslDetails.validFor.join(",")
+      // })
       res.send({ ok: true, data: obj })
     } else {
       res.send({ ok: false })
     }
 
-    res.send(getSslDetails)
+    // res.send(getSslDetails)
 
   } catch (error) {
     console.log(error);
@@ -66,8 +69,8 @@ router.put('/', async (req: Request, res: Response) => {
   try {
     const id = req.body.id;
     const url = req.body.url;
-    console.log(id,url);
-    
+    console.log(id, url);
+
     let domain = await cutdomain(url);
     let getSslDetails;
     let isError = false;
