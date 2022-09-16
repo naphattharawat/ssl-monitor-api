@@ -1,9 +1,9 @@
 /// <reference path="../typings.d.ts" />
 
+import * as path from 'path';
 let envPath = path.join(__dirname, '../config');
 require('dotenv').config({ path: envPath });
 
-import * as path from 'path';
 import * as logger from 'morgan';
 import * as cookieParser from 'cookie-parser';
 import * as bodyParser from 'body-parser';
