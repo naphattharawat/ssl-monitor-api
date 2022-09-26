@@ -8,15 +8,15 @@ npm i ts-node -g
 ```
 
 ```
-git clone https://github.com/siteslave/ts-node-express myApi
-cd myApi
+git clone https://github.com/naphattharawat/ssl-monitor-api ssl-monitor-api
+cd ssl-monitor-api
 npm i
 ```
 
 ## Running
 
 ```
-cp .env.example.txt .env
+cp .env.example.txt config
 npm start
 ```
 
